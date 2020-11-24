@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:aiports_of_the_city/views/bloc/airports_bloc.dart';
 import 'package:aiports_of_the_city/repositories/airports_repositories.dart';
 import 'package:aiports_of_the_city/views/bloc/airports_page.dart';
 
@@ -17,6 +19,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home: AirportsPage(airportsRepository: airportsRepository));
+        home: BlocProvider(
+          create: (context) => AirportsBloc(),
+          child: AirportsPage(airportsRepository: airportsRepository),
+        ));
   }
 }

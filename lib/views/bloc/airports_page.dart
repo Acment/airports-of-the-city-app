@@ -14,60 +14,52 @@ class AirportsPage extends StatefulWidget {
 }
 
 class _AirportsPageState extends State<AirportsPage> {
-  final airportsBloc = AirportsBloc();
-
+  
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container(child: BlocProvider(
-      create: (context) => airportsBloc,
-      child: BlocBuilder<AirportsBloc, AirportsState>(
-      builder: (context, state) {
-        if (state is AirportsInitial) {
-          // return Container(
-          //   child: FloatingActionButton(
-          //   // onPressed: () =>state is AirportsFetching()
-          //     child: Icon(
-          //       Icons.search,
-          //     ), 
-          //     );
-          // );
-        } else if (state is AirportsEmpty) {
-          return Expanded(
-              child: Center(
-            child: Text('No se encontró resultados'),
-          ));
-        } else if (state is AirportsFetching) {
-          return Expanded(
-              child: Center(
-            child: CircularProgressIndicator(),
-          ));
-        } else if (state is AirportsError) {
-          Expanded(
-              child: Center(
-            child: Text('Se produjo un error'),
-          ));
-        } else {
-          final stateAsAirportsFetched = state as AirportsFetchSuccess;
-          final airports = stateAsAirportsFetched.airports;
-          return buildAirports(airports);
-        }
-      },
-    ),
-    ))
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: BlocBuilder<AirportsBloc, AirportsState>(
+          builder: (context, state) {
+            if (state is AirportsInitial){
+              return Scaffold(
+                floatingActionButton: FloatingActionButton(child: Icon(Icons.search), onPressed: ()=> searchAirports ),
+              );
+            }else if(state is AirportsFetching){
+              return Expanded(
+                child: CircularProgressIndicator(
+                ),
+              );
+            }else if (state is AirportsFetchSuccess){
+              
+              return buildAirports(state.airports);
+            }
+          },
+        ),
+      ),
     );
+
+
+
+  
+}
+  void searchAirports( BuildContext context){
+    // BlocProvider.of<AirportsBloc>(context).add(AirportsEvent.airportsFetching)
   }
 
   Widget buildAirports(List<Airport> airports) {
     return Expanded(
         child: ListView.builder(
           itemCount: airports.length ,
+          scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
       String iata = '${airports[index].iata}';
-      return ListTile(
-        leading: Text(
-          "$index.   ${airports[index].name}",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
+      return Container(
+        child: Column(children: <Widget> [
+          Text(airports[index].name)
+        ]),
       );
     }));
   }

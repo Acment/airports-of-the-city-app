@@ -14,7 +14,7 @@ class AirportsBloc extends Bloc<AirportsEvent, AirportsState> {
   AirportsBloc({this.airportsRepository}) : super(AirportsInitial());
 
   @override
-  AirportsState get initialState => AirportsFetching();
+  AirportsState get initialState => AirportsInitial();
 
   @override
   Stream<AirportsState> mapEventToState(
@@ -25,8 +25,6 @@ class AirportsBloc extends Bloc<AirportsEvent, AirportsState> {
     try {
       if (event is AllAirportsEvent) {
         airports = await airportsRepository.fetchAllAirports();
-      } else if (event is OneAirportEvent) {
-        // airports = await airportsRepository.fetchByIATA(event.airportId.iata);
       }
       if (airports.length == 0) {
         yield AirportsEmpty();
