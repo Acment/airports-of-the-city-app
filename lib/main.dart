@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:aiports_of_the_city/views/bloc/airports_bloc.dart';
+import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
+import 'package:aiports_of_the_city/views/list_airports/airports_page.dart';
+
 import 'package:aiports_of_the_city/repositories/airports_repositories.dart';
-import 'package:aiports_of_the_city/views/bloc/airports_page.dart';
 
 void main() {
   AirportsRepository _repository = AirportsRepository();

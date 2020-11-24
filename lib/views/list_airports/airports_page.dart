@@ -1,9 +1,9 @@
+import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:aiports_of_the_city/repositories/airports_repositories.dart';
 import 'package:aiports_of_the_city/models/airport_model.dart';
-import 'package:aiports_of_the_city/views/bloc/airports_bloc.dart';
 
 class AirportsPage extends StatefulWidget {
   final AirportsRepository airportsRepository;
