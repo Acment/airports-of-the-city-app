@@ -40,7 +40,7 @@ class GetAirports {
 
     final response = await Dio().getUri(uri);
 
-    final airports = new Airports.fromJsonList(response.data['data']);
+    final airports = new Airports.fromJsonList(response.data['data']['data']);
 
     return airports.items;
   }
