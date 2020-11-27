@@ -5,6 +5,6 @@ class AirportsRepository {
   GetAirports _getAirports = GetAirports();
   Future<List<Airport>> fetchAllAirports() => _getAirports.fetchAllAirports();
 
-  Future<List<Airport>> fetchByIATA(String iata) =>
-      _getAirports.fetchByIATA(iata);
+  // Future<List<Airport>> fetchByIATA(String iata) =>
+  //     _getAirports.fetchByIATA(iata);
 }

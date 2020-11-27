@@ -18,23 +18,21 @@ class _AirportsPageState extends State<AirportsPage> {
   
   @override
   Widget build(BuildContext context) {
+  final AirportsBloc bloc = BlocProvider.of<AirportsBloc>(context);
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: BlocBuilder<AirportsBloc, AirportsState>(
           builder: (context, state) {
-            if (state is AirportsInitial){
-              return Scaffold(
-                floatingActionButton: FloatingActionButton(child: Icon(Icons.search), onPressed: ()=> searchAirports ),
-              );
-            }else if(state is AirportsFetching){
-              return Expanded(
+            if (state is AirportsFetching){
+              return Center(
                 child: CircularProgressIndicator(
                 ),
               );
-            }else if (state is AirportsFetchSuccess){
-              
-              return buildAirports(state.airports);
+            }else if(state is AirportsFetchSuccess){
+                bloc.add(AirportsEvent.loadSuccess);
+              return buildAirports(state.airports); 
             }
           },
         ),
@@ -45,9 +43,6 @@ class _AirportsPageState extends State<AirportsPage> {
 
   
 }
-  void searchAirports( BuildContext context){
-    // BlocProvider.of<AirportsBloc>(context).add(AirportsEvent.airportsFetching)
-  }
 
   Widget buildAirports(List<Airport> airports) {
     return Expanded(
@@ -55,10 +50,11 @@ class _AirportsPageState extends State<AirportsPage> {
           itemCount: airports.length ,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-      String iata = '${airports[index].iata}';
+      
       return Container(
         child: Column(children: <Widget> [
-          Text(airports[index].name)
+          Text(airports[index].name),
+          Text(airports[index].iata),
         ]),
       );
     }));
