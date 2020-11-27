@@ -31,7 +31,7 @@ class _AirportsPageState extends State<AirportsPage> {
                 ),
               );
             }else if(state is AirportsFetchSuccess){
-                bloc.add(AirportsEvent.loadSuccess);
+                // bloc.add(AirportsEvent);
               return buildAirports(state.airports); 
             }
           },
