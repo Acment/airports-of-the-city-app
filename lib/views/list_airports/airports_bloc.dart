@@ -11,10 +11,10 @@ part 'airports_state.dart';
 
 class AirportsBloc extends Bloc<AirportsEvent, AirportsState> {
   final AirportsRepository airportsRepository;
-  AirportsBloc({this.airportsRepository}) : super(AirportsInitial());
+  AirportsBloc({this.airportsRepository}) : super(AirportsFetching());
 
   @override
-  AirportsState get initialState => AirportsInitial();
+  AirportsState get initialState => AirportsFetching();
 
   @override
   Stream<AirportsState> mapEventToState(
@@ -23,7 +23,7 @@ class AirportsBloc extends Bloc<AirportsEvent, AirportsState> {
     yield AirportsFetching();
     List<Airport> airports;
     try {
-      if (event is AllAirportsEvent) {
+      if (event == AirportsEvent.loadSuccess) {
         airports = await airportsRepository.fetchAllAirports();
       }
       if (airports.length == 0) {

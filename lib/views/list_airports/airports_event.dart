@@ -1,8 +1,19 @@
 part of 'airports_bloc.dart';
 
-abstract class AirportsEvent {}
+// abstract class AirportsEvent extends Equatable {
+//   const AirportsEvent();
 
-class AllAirportsEvent extends AirportsEvent {}
+//   @override
+//   List<Object> get props => [];
+// }
+
+// class AllAirportsEvent extends AirportsEvent {
+//   ñ
+// }
+enum AirportsEvent {
+
+  loadSuccess,
+}
 
 // class OneAirportEvent {
 //   final String airportId;

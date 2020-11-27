@@ -26,13 +26,15 @@ class _AirportsPageState extends State<AirportsPage> {
         child: BlocBuilder<AirportsBloc, AirportsState>(
           builder: (context, state) {
             if (state is AirportsFetching){
+              // bloc.add(AirportsEvent.loadSuccess);
               return Center(
                 child: CircularProgressIndicator(
                 ),
               );
             }else if(state is AirportsFetchSuccess){
-                bloc.add(AirportsEvent.loadSuccess);
               return buildAirports(state.airports); 
+            } else{
+              bloc.add(AirportsEvent.loadSuccess);
             }
           },
         ),
