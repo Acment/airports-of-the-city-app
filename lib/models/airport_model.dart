@@ -43,11 +43,11 @@ class Airport {
   });
 
   Airport.fromJsonMap(Map<String, dynamic> json) {
-    iata = json['iata'];
+    iata = json['IATA'];
     name = json['name'];
     city = json['city'];
     country = json['country'];
-    icao = json['icao'];
+    icao = json['ICAO'];
     latitude = json['latitude'];
     longitude = json['longitude'];
     altitude = json['altitude'];

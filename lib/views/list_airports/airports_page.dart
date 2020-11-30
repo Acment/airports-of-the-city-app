@@ -2,30 +2,25 @@ import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:aiports_of_the_city/repositories/airports_repositories.dart';
 import 'package:aiports_of_the_city/models/airport_model.dart';
 
-class AirportsPage extends StatefulWidget {
-  final AirportsRepository airportsRepository;
-  AirportsPage({this.airportsRepository});
 
-  @override
-  _AirportsPageState createState() => _AirportsPageState();
-}
-
-class _AirportsPageState extends State<AirportsPage> {
-  
+class AirportsPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
   final AirportsBloc bloc = BlocProvider.of<AirportsBloc>(context);
 
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[IconButton(icon: Icon(Icons.search), onPressed: () {})],
+        title: Text('Airports List'),
+        ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: BlocBuilder<AirportsBloc, AirportsState>(
           builder: (context, state) {
-            if (state is AirportsFetching){
+            if (state is AirportsFetchInProgress){
               return Center(
                 child: CircularProgressIndicator(
                 ),
@@ -33,30 +28,30 @@ class _AirportsPageState extends State<AirportsPage> {
             }else if(state is AirportsFetchSuccess){
                 // bloc.add(AirportsEvent);
               return buildAirports(state.airports); 
+            }else{
+              return Container();
             }
           },
         ),
       ),
     );
-
-
-
   
 }
 
   Widget buildAirports(List<Airport> airports) {
-    return Expanded(
-        child: ListView.builder(
-          itemCount: airports.length ,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
+    return ListView.builder(
+      itemCount: airports.length ,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (BuildContext context, int index) {
       
-      return Container(
-        child: Column(children: <Widget> [
-          Text(airports[index].name),
-          Text(airports[index].iata),
-        ]),
+      return Card(
+                child: ListTile(
+          leading: Text("${index + 1}"),
+          title: Text("${airports[index].name}"),
+          subtitle: Text('${airports[index].country}'),
+          trailing: Text('${airports[index].iata}'),
+          ),
       );
-    }));
+    });
   }
 }

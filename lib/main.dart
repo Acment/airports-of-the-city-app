@@ -18,11 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(),
         home: BlocProvider(
-          create: (context) => AirportsBloc(),
-          child: AirportsPage(airportsRepository: airportsRepository),
+          create: (context) => AirportsBloc(airportsRepository: airportsRepository)..add(AirportsEvent.loadSuccess),
+          child: AirportsPage(),
         ));
   }
 }

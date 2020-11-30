@@ -4,7 +4,7 @@ import 'package:aiports_of_the_city/models/airport_model.dart';
 
 class GetAirports {
   String _url = 'airports-of-the-world.herokuapp.com';
-  int _limit = 10;
+  int _limit = 500;
 
   // String limit
 

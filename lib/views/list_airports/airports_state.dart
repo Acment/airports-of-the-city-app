@@ -7,15 +7,14 @@ abstract class AirportsState extends Equatable {
   List<Object> get props => [];
 }
 
-class AirportsInitial extends AirportsState {}
 
-class AirportsFetching extends AirportsState {}
+class AirportsFetchInProgress extends AirportsState {}
 
 class AirportsFetchSuccess extends AirportsState {
   final List<Airport> airports;
   AirportsFetchSuccess({@required this.airports});
 }
 
-class AirportsEmpty extends AirportsState {}
+class AirportsFetchEmpty extends AirportsState {}
 
-class AirportsError extends AirportsState {}
+class AirportsFetchError extends AirportsState {}
