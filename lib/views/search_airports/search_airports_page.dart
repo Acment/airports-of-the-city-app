@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
-import 'package:aiports_of_the_city/views/search_airports/search_airports_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:aiports_of_the_city/models/airport_model.dart';
 
