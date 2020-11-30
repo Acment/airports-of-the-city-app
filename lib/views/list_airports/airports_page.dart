@@ -46,10 +46,10 @@ class AirportsPage extends StatelessWidget {
       
       return Card(
                 child: ListTile(
-          leading: Text("${index + 1}"),
+          leading: Text("${airports[index].iata}"),
           title: Text("${airports[index].name}"),
           subtitle: Text('${airports[index].country}'),
-          trailing: Text('${airports[index].iata}'),
+          // trailing: Text('${airports[index].iata}'),
           ),
       );
     });
