@@ -17,13 +17,10 @@ final AirportsSearchRepository airportsSearchRepository;
   SearchAirportsBloc({this.airportsSearchRepository}) : super(SearchAirportsInitial());
 
   @override
-  SearchAirportsState get initialState => SearchAirportsInitial();
-
-  @override
   Stream<SearchAirportsState> mapEventToState(
     SearchAirportsEvent event,
   ) async* {
-    yield SearchAirportsFetching();
+    yield SearchAirportsFetchInProgress();
     List<Airport> airports;
     try {
       if (event is SearchByFilterEvent) {
@@ -32,12 +29,12 @@ final AirportsSearchRepository airportsSearchRepository;
         airports = await airportsSearchRepository.fetchByIATA(_inputText);
       }
       if (airports.length == 0) {
-        yield SearchAirportsEmpty();
+        yield SearchAirportsFetchEmpty();
       } else {
         yield SearchAirportsFetchSuccess(airports: airports);
       }
     } catch (_) {
-      yield SearchAirportsError();
+      yield SearchAirportsFetchError();
     }
   }
 }

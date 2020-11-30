@@ -9,13 +9,16 @@ abstract class SearchAirportsState extends Equatable {
 
 class SearchAirportsInitial extends SearchAirportsState {}
 
-class SearchAirportsFetching extends SearchAirportsState{}
+class SearchAirportsFetchInProgress extends SearchAirportsState{}
 
 class SearchAirportsFetchSuccess extends SearchAirportsState{
   final List<Airport> airports;
-  SearchAirportsFetchSuccess({@required this.airports});
+  const SearchAirportsFetchSuccess({@required this.airports});
+
+  @override
+  List<Object> get props => [airports];
 }
 
-class SearchAirportsEmpty extends SearchAirportsState{}
+class SearchAirportsFetchEmpty extends SearchAirportsState{}
 
-class SearchAirportsError extends SearchAirportsState {}
+class SearchAirportsFetchError extends SearchAirportsState {}
