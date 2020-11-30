@@ -27,9 +27,6 @@ final AirportsSearchRepository airportsSearchRepository;
         airports = await airportsSearchRepository.fetchByFilter(_inputText);
       }else if(event is SearchByIataEvent){
         airports = await airportsSearchRepository.fetchByIATA(_inputText);
-      }
-      if (airports.length == 0) {
-        yield SearchAirportsFetchEmpty();
       } else {
         yield SearchAirportsFetchSuccess(airports: airports);
       }

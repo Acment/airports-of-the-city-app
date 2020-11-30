@@ -28,6 +28,8 @@ class AirportsPage extends StatelessWidget {
             }else if(state is AirportsFetchSuccess){
                 // bloc.add(AirportsEvent);
               return buildAirports(state.airports); 
+            }else if (state is AirportsFetchError){
+              return Center(child: Text('Error has ocurred'));
             }else{
               return Container();
             }
