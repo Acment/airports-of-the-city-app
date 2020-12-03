@@ -9,7 +9,7 @@ abstract class SearchAirportsState extends Equatable {
 
 class SearchAirportsInitial extends SearchAirportsState {}
 
-class SearchAirportsFetching extends SearchAirportsState{}
+class SearchAirportsInFetch extends SearchAirportsState{}
 
 class SearchAirportsFetchSuccess extends SearchAirportsState{
   final List<Airport> airports;

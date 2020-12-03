@@ -36,12 +36,15 @@ class GetAirports {
       'name' : inputText,
       'city' : inputText,
       'country': inputText,
+      'fullMatch': '0',
+      'limit' : _limit.toString(),
     });
 
     final response = await Dio().getUri(uri);
 
     final airports = new Airports.fromJsonList(response.data['data']['data']);
-
-    return airports.items;
+  
+    print('apiclient: ${airports.items}');
+    return airports.items; 
   }
 }

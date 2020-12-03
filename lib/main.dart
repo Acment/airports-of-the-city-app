@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 void main() {
-  runApp(MyApp());
+  AirportsSearchRepository _repository = AirportsSearchRepository();
+  runApp(MyApp(airportsSearchRepository: _repository,));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home: BlocProvider(create: (context) => SearchAirportsBloc(airportsSearchRepository: airportsSearchRepository),
+        home: BlocProvider(create: (context) => SearchAirportsBloc(airportsSearchRepository: airportsSearchRepository)
+        // ..add(SearchInitSuccessEvent())
+        ,
         child: SearchAirportsPage(),)
         // home: BlocProvider(
         //   create: (context) => AirportsBloc(airportsRepository: airportsRepository)..add(AirportsEvent.loadSuccess),
