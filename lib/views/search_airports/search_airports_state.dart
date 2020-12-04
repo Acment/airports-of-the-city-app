@@ -16,6 +16,10 @@ class SearchAirportsFetchSuccess extends SearchAirportsState{
   SearchAirportsFetchSuccess({@required this.airports});
 }
 
+// class SearchAirportsIATA extends SearchAirportsState{}
+// class SearchAirportsGeneral extends SearchAirportsState{}
+// class SearchAirportsICAO extends SearchAirportsState{}
+
 class SearchAirportsEmpty extends SearchAirportsState{}
 
 class SearchAirportsError extends SearchAirportsState {}

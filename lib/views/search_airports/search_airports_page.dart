@@ -7,8 +7,7 @@ import 'package:aiports_of_the_city/models/airport_model.dart';
 
 class SearchAirportsPage extends StatelessWidget {
 
-  String _inputText;
-  
+
   @override
   Widget build(BuildContext context) {
   final SearchAirportsBloc bloc = BlocProvider.of<SearchAirportsBloc>(context);
@@ -26,13 +25,12 @@ class SearchAirportsPage extends StatelessWidget {
                   hintText: 'Write an airport',
                 ),
                 onChanged: (String inputText){
-                  if (inputText.length > 0){
-                    _inputText = inputText;
-                    bloc.add(SearchByFilterEvent(inputText: _inputText));
+                  if (inputText.length == 3){
+                    bloc.add(SearchByIataEvent(inputText: inputText.trimLeft().trimRight().toUpperCase()));
                   }
                 },
                 ),
-
+            choiceChips(context),
               
               Expanded(child: BlocBuilder<SearchAirportsBloc, SearchAirportsState>(builder: (context, state){
                 print('state: $state');
@@ -50,10 +48,15 @@ class SearchAirportsPage extends StatelessWidget {
                 }else if(state is SearchAirportsError) {
                   return Center(child: Text('Error Ocurred'),);
                 }else if(state is SearchAirportsEmpty ){
-                  return Center(child: Text('No results found'),);
+                  return Center(child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Text('No results found', style: TextStyle(fontSize: 22.0),),
+                      // Text('Try to write the first letter capitalized!', style: TextStyle(fontSize: 17.5))
+                    ],),);
                 }
                 else{
-                  return  Center(child: Text('ELSE'),);
+                  return  Center(child: Text('Unexpected Error Ocurred'),);
                 }
               }),)
 
@@ -71,13 +74,23 @@ class SearchAirportsPage extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
       
       return Card(
-                child: ListTile(
-          leading: Text("${airports[index].iata}"),
+          child: ListTile(
+          leading: Text("${airports[index].iata}", style: TextStyle(height: 2.3),),
           title: Text("${airports[index].name}"),
           subtitle: Text('${airports[index].country}'),
           ),
       );
     });
   }
-  
+
+  Widget choiceChips(context) {
+    
+    return Row(
+      children: <Widget>[
+        ChoiceChip(label: Text('General', style: TextStyle(fontSize: 20.0),), selected: true, backgroundColor: Colors.blue[900], labelStyle: TextStyle(color: Colors.black), ),
+        ChoiceChip(label: Text('ICAO', style: TextStyle(fontSize: 20.0)), selected: false,),
+        ChoiceChip(label: Text('IATA', style: TextStyle(fontSize: 20.0)), selected: false,),
+      ],
+    );
+  }  
 }

@@ -13,6 +13,17 @@ class Airports {
   }
 }
 
+class AirportOne {
+  List<Airport> items = new List();
+
+  AirportOne();
+
+  AirportOne.fromJson(Map item) {
+    final airport = new Airport.fromJsonMap(item);
+    items.add(airport);
+  }
+}
+
 class Airport {
   String iata;
   String name;

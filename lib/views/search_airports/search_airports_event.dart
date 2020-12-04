@@ -1,11 +1,16 @@
 part of 'search_airports_bloc.dart';
 
 abstract class SearchAirportsEvent extends Equatable {
+  
   const SearchAirportsEvent();
 
   @override
   List<Object> get props => [];
 }
+
+// class SearchGeneralEvent extends SearchAirportsEvent{}
+// class SearchIataEvent extends SearchAirportsEvent{}
+
 
 class SearchInitSuccessEvent extends SearchAirportsEvent {
   const SearchInitSuccessEvent();
@@ -29,7 +34,6 @@ class SearchByIataEvent extends SearchAirportsEvent {
   SearchByIataEvent({@required this.inputText}) : assert(inputText != null);
 }
 
-class SearchAirportsSubmitted extends SearchAirportsEvent {}
 
 class SearchAirportsChanged extends SearchAirportsEvent {
   final String inputText;
