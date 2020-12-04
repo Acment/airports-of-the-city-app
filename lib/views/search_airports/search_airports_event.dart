@@ -7,8 +7,12 @@ abstract class SearchAirportsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchInitSuccess extends SearchAirportsEvent {
-  const SearchInitSuccess();
+// class SearchGeneralEvent extends SearchAirportsEvent{}
+// class SearchIataEvent extends SearchAirportsEvent{}
+
+
+class SearchInitSuccessEvent extends SearchAirportsEvent {
+  const SearchInitSuccessEvent();
 }
 
 class SearchByFilterEvent extends SearchAirportsEvent {
@@ -29,5 +33,9 @@ class SearchByIataEvent extends SearchAirportsEvent {
   SearchByIataEvent({@required this.inputText}) : assert(inputText != null);
 }
 
-class SearchAirportsSubmitted extends SearchAirportsEvent {}
 
+class SearchAirportsChanged extends SearchAirportsEvent {
+  final String inputText;
+
+  const SearchAirportsChanged(this.inputText);
+}
