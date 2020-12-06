@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import 'package:aiports_of_the_city/models/distance_airports_model.dart';
 import 'package:aiports_of_the_city/models/airport_model.dart';
 
 class GetAirports {
@@ -66,5 +67,30 @@ class GetAirports {
   
     print('apiclient: ${airports.items}');
     return airports.items; 
+  }
+
+  Future<Map<String, dynamic>> fetchDistanceAirports(List<String> routeText) async{
+    final inputOrigin = routeText[0];
+    final inputDestination = routeText[1];
+
+    Uri uriDistance = Uri.https(_url, 'routes/$inputOrigin-$inputDestination');
+    Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
+    Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
+
+    final responseDistance = await Dio().getUri(uriDistance);
+    final responseOrigin = await Dio().getUri(uriOrigin);
+    final responseDestination = await Dio().getUri(uriDestination);
+
+    final distance = DistanceOne.fromJson(responseDistance.data['data']);
+    final origin = AirportOne.fromJson(responseOrigin.data['data']);
+    final destination = AirportOne.fromJson(responseDestination.data['data']);
+
+    final Map<String, dynamic> distanceAirports = {
+      'distance'   : distance,
+      'origin'     : origin,
+      'destination': destination
+    };
+    
+    return distanceAirports;
   }
 }
