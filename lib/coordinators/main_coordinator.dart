@@ -16,7 +16,7 @@ class MainCoordinator {
       coordinator: this,
       context: context,
       airportsSearchRepository: AirportsSearchRepository(),
-      
+      // TODO DELETE UNNECESARY ADD 
     )..add(SearchInitSuccessEvent()),
       child: SearchAirportsPage(),
     );

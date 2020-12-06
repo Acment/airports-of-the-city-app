@@ -10,7 +10,7 @@ abstract class SearchAirportsEvent extends Equatable {
 // class SearchGeneralEvent extends SearchAirportsEvent{}
 // class SearchIataEvent extends SearchAirportsEvent{}
 
-
+// TODO Delete searchInitSuccese cause is unnecesary
 class SearchInitSuccessEvent extends SearchAirportsEvent {
   const SearchInitSuccessEvent();
 }
@@ -31,11 +31,4 @@ class SearchByIataEvent extends SearchAirportsEvent {
   List<Object> get props => [inputText];
 
   SearchByIataEvent({@required this.inputText}) : assert(inputText != null);
-}
-
-
-class SearchAirportsChanged extends SearchAirportsEvent {
-  final String inputText;
-
-  const SearchAirportsChanged(this.inputText);
 }

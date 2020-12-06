@@ -21,7 +21,7 @@ final BuildContext context;
     @required this.context,
     this.coordinator,
     }) : super(SearchAirportsInitial());
-
+// TODO delete unnecesary code
   @override
   SearchAirportsState get initialState => SearchAirportsInitial();
 
@@ -32,9 +32,10 @@ final BuildContext context;
     yield SearchAirportsInFetch();
     List<Airport> airports;
     try {
-      if (event is SearchInitSuccessEvent ) {
-        yield SearchAirportsInitial();
-      }else if(event is SearchByIataEvent){
+      // if (event is SearchInitSuccessEvent ) {
+      //   yield SearchAirportsInitial();
+      // }
+      if(event is SearchByIataEvent){
         print(event.inputText);
         airports = await airportsSearchRepository.fetchByIATA(event.inputText);
       }else if( event is SearchByFilterEvent){
