@@ -19,7 +19,6 @@ class GetAirports {
 
     final airports = new Airports.fromJsonList(response.data['data']['data']);
 
-    print(airports.items);
     return airports.items;
   }
 
@@ -48,9 +47,7 @@ class GetAirports {
     print('response: ${response.data['data']}');
 
     final airports = new AirportOne.fromJson(response.data['data']);
-    print('airports: $airports');
   
-    print('iata: ${airports.items}');
     return airports.items;
   }
 
