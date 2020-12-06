@@ -13,7 +13,9 @@ class AirportsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[IconButton(icon: Icon(Icons.search), onPressed: () {})],
+        actions: <Widget>[IconButton(icon: Icon(Icons.search), onPressed: () {
+          bloc.add(AirportsEvent.searchPageSelected);
+        })],
         title: Text('Airports List'),
         ),
       body: Container(
@@ -31,6 +33,7 @@ class AirportsPage extends StatelessWidget {
             }else if (state is AirportsFetchError){
               return Center(child: Text('Error has ocurred'));
             }else{
+              bloc.add(AirportsEvent.loadSuccess);
               return Container();
             }
           },
@@ -48,7 +51,7 @@ class AirportsPage extends StatelessWidget {
       
       return Card(
                 child: ListTile(
-          leading: Text("${airports[index].iata}"),
+          leading: Text("${airports[index].iata}", style: TextStyle(height: 2.3)),
           title: Text("${airports[index].name}"),
           subtitle: Text('${airports[index].country}'),
           // trailing: Text('${airports[index].iata}'),

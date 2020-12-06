@@ -1,3 +1,4 @@
+import 'package:aiports_of_the_city/coordinators/main_coordinator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(),
         home: BlocProvider(
-          create: (context) => AirportsBloc(airportsRepository: airportsRepository)..add(AirportsEvent.loadSuccess),
+          create: (context) => AirportsBloc(airportsRepository: airportsRepository, context: context, coordinator: MainCoordinator() )..add(AirportsEvent.loadSuccess, ),
           child: AirportsPage(),
         ));
   }
