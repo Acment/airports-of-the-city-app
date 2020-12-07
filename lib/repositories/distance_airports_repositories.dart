@@ -6,6 +6,6 @@ class DistanceAirportsRepository{
 
   GetAirports _getAirports = GetAirports();
 
-  Future<Map<String, dynamic>> fetchDistance(List<String> routeText ) => _getAirports.fetchDistanceAirports(routeText);
+  Future<Map<String, dynamic>> fetchDistance({String inputOrigin, String inputDestination}) => _getAirports.fetchDistanceAirports(inputOrigin: inputOrigin, inputDestination: inputDestination );
   
 }
