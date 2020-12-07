@@ -1,11 +1,13 @@
 class DistanceOne {
-  List<Distance> distance = new List();
+  Distance distance;
 
   DistanceOne();
 
   DistanceOne.fromJson(Map json){
     final items = new Distance.fromJsonMap(json);
-    distance.add(items);
+    distance = items;
+
+    
   }
 }
 
@@ -22,7 +24,7 @@ class Distance{
     this.destinationIata,
   });
 
-  Distance.fromJsonMap(Map<String, String> json){
+  Distance.fromJsonMap(Map<String, dynamic> json){
     code = json['code'];
     distance = json['distance'];
     originIata = json['originIata'];
