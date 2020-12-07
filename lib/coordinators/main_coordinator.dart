@@ -1,6 +1,7 @@
 import 'package:aiports_of_the_city/repositories/distance_airports_repositories.dart';
 import 'package:aiports_of_the_city/repositories/search_airports_repositories.dart';
 import 'package:aiports_of_the_city/views/distance_airports/distance_airports_bloc.dart';
+import 'package:aiports_of_the_city/views/distance_airports/distance_airports_page.dart';
 import 'package:aiports_of_the_city/views/search_airports/search_airports_bloc.dart';
 import 'package:aiports_of_the_city/views/search_airports/search_airports_page.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,8 @@ class MainCoordinator {
       distanceRepository: DistanceAirportsRepository(),
       context: context
       
-    )
-    // TODO add DistancePage as child
+    ),
+    child: DistanceAirportsPage(),
     );
     
   }
