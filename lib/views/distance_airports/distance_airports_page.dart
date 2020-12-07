@@ -93,8 +93,8 @@ class DistanceAirportsPage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Card(
-          child: ListTile(title: (Text('Origin: ${origin.name}-Destination: ${destination.name}') ),
-          leading: Text('${distance.code}', style: TextStyle(height: 2.6),),
+          child: ListTile(title: (Text('${distance.code}') ),
+          leading: Text('Code', style: TextStyle(height: 2.6),),
           subtitle: Text('Distance: ${distance.distance}'),
           ),
         ),

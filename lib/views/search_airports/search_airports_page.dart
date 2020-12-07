@@ -27,7 +27,7 @@ class SearchAirportsPage extends StatelessWidget {
                 ),
                 onChanged: (String inputText){
                   if (inputText.length > 0){
-                    bloc.add(SearchByIataEvent(inputText: inputText.trimLeft().trimRight().toUpperCase()));
+                    bloc.add(SearchByFilterEvent(inputText: inputText.trimLeft().trimRight()));
                   }
                 },
                 ),
