@@ -1,15 +1,23 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+
+import 'package:aiports_of_the_city/coordinators/main_coordinator.dart';
+import 'package:aiports_of_the_city/repositories/distance_airports_repositories.dart';
+import 'package:bloc/bloc.dart';
 
 part 'distance_airports_event.dart';
 part 'distance_airports_state.dart';
 
 class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsState> {
-  DistanceAirportsBloc() : super(DistanceAirportsInitial());
-  // TODO add DistanceRepositoryAs a parameter
+  final DistanceAirportsRepository distanceRepository;
+  final MainCoordinator coordinator;
+  final BuildContext context;
+  DistanceAirportsBloc({
+    @required this.distanceRepository,
+    @required this.coordinator,
+    @required this.context
+  }) : super(DistanceAirportsInitial());
   @override
   Stream<DistanceAirportsState> mapEventToState(
     DistanceAirportsEvent event,
@@ -21,7 +29,7 @@ class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsS
         yield DistanceAirportsInitial();
       }
       if(event is DistanceSearchEvent){
-        // TODO create repository and api cliente
+        distanceAirports = await distanceRepository.fetchDistance(event.routeText);
       }
       else if(distanceAirports.length == 0){
         yield DistanceFetchEmpty();
