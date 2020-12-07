@@ -15,7 +15,7 @@ class MainCoordinator {
 
   void launchDistance(BuildContext context) {
     Navigator.of(context).push(
-      _createRoute(_createSearchPage())
+      _createRoute(_createDistancePage())
     );
   }
 
@@ -29,7 +29,6 @@ class MainCoordinator {
     // TODO add DistancePage as child
     );
     
-        // TODO create repository and api cliente
   }
 
   BlocProvider<SearchAirportsBloc> _createSearchPage(){
