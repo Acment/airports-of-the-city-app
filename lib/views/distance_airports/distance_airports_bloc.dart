@@ -9,7 +9,7 @@ part 'distance_airports_state.dart';
 
 class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsState> {
   DistanceAirportsBloc() : super(DistanceAirportsInitial());
-
+  // TODO add DistanceRepositoryAs a parameter
   @override
   Stream<DistanceAirportsState> mapEventToState(
     DistanceAirportsEvent event,

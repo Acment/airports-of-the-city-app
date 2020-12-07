@@ -86,9 +86,9 @@ class GetAirports {
     final destination = AirportOne.fromJson(responseDestination.data['data']);
 
     final Map<String, dynamic> distanceAirports = {
-      'distance'   : distance,
-      'origin'     : origin,
-      'destination': destination
+      'distance'   : distance.distance,
+      'origin'     : origin.items,
+      'destination': destination.items
     };
     
     return distanceAirports;
