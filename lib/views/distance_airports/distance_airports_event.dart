@@ -12,10 +12,12 @@ abstract class DistanceAirportsEvent extends Equatable {
 // }
 
 class DistanceSearchEvent extends DistanceAirportsEvent {
-  final List<String> routeText;
+  final String origin;
+  final String destination;
+
 
   @override
-  List<Object> get props => [routeText];
+  List<Object> get props => [origin, destination];
 
-  DistanceSearchEvent({@required this.routeText}) : assert(routeText != null);
+  DistanceSearchEvent({@required this.origin, @required this.destination});
 }

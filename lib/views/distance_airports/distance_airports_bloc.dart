@@ -29,7 +29,7 @@ class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsS
         yield DistanceAirportsInitial();
       }
       if(event is DistanceSearchEvent){
-        distanceAirports = await distanceRepository.fetchDistance(event.routeText);
+        distanceAirports = await distanceRepository.fetchDistance(inputOrigin: event.origin, inputDestination: event.destination);
       }
       else if(distanceAirports.length == 0){
         yield DistanceFetchEmpty();
