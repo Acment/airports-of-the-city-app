@@ -69,10 +69,7 @@ class GetAirports {
     return airports.items; 
   }
 
-  Future<Map<String, dynamic>> fetchDistanceAirports(List<String> routeText) async{
-    final inputOrigin = routeText[0];
-    final inputDestination = routeText[1];
-
+  Future<Map<String, dynamic>> fetchDistanceAirports({String inputOrigin, String inputDestination}) async{
     Uri uriDistance = Uri.https(_url, 'routes/$inputOrigin-$inputDestination');
     Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
     Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
