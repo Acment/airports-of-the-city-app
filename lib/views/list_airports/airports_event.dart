@@ -14,6 +14,7 @@ enum AirportsEvent {
 
   loadSuccess,
   searchPageSelected,
+  distancePageSelected
 }
 
 // class OneAirportEvent {

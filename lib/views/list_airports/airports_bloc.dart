@@ -37,7 +37,9 @@ class AirportsBloc extends Bloc<AirportsEvent, AirportsState> {
       if (event == AirportsEvent.loadSuccess) {
         airports = await airportsRepository.fetchAllAirports();
       } else if (event == AirportsEvent.searchPageSelected ){
-        coordinator.launchDistance(context );
+        coordinator.launchSearch(context );
+      } else if(event == AirportsEvent.distancePageSelected){
+        coordinator.launchDistance(context);
       }
       if (airports == null) {
         yield AirportsFetchEmpty();

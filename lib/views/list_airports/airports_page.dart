@@ -13,9 +13,9 @@ class AirportsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[IconButton(icon: Icon(Icons.search), onPressed: () {
-          bloc.add(AirportsEvent.searchPageSelected);
-        })],
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.code), onPressed: () => bloc.add(AirportsEvent.distancePageSelected)),
+          IconButton(icon: Icon(Icons.search), onPressed: () => bloc.add(AirportsEvent.searchPageSelected))],
         title: Text('Airports List'),
         ),
       body: Container(
