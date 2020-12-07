@@ -7,9 +7,9 @@ abstract class DistanceAirportsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-// class DistanceInitSuccessEvent extends DistanceAirportsEvent{
-//   const DistanceInitSuccessEvent();
-// }
+class DistanceInitSuccessEvent extends DistanceAirportsEvent{
+  const DistanceInitSuccessEvent();
+}
 
 class DistanceSearchEvent extends DistanceAirportsEvent {
   final String origin;

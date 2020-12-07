@@ -26,7 +26,7 @@ class MainCoordinator {
       distanceRepository: DistanceAirportsRepository(),
       context: context
       
-    ),
+    )..add(DistanceInitSuccessEvent()),
     child: DistanceAirportsPage(),
     );
     

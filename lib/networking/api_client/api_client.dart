@@ -8,6 +8,7 @@ class GetAirports {
   int _limit = 100;
 
   List<Airport> empty = [];
+  Map<String, dynamic> emptyMap = {};
 
   // String limit
 
@@ -70,24 +71,32 @@ class GetAirports {
   }
 
   Future<Map<String, dynamic>> fetchDistanceAirports({String inputOrigin, String inputDestination}) async{
-    Uri uriDistance = Uri.https(_url, 'routes/$inputOrigin-$inputDestination');
-    Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
-    Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
+    try{
+      Uri uriDistance = Uri.https(_url, 'routes/$inputOrigin-$inputDestination');
+      Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
+      Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
 
-    final responseDistance = await Dio().getUri(uriDistance);
-    final responseOrigin = await Dio().getUri(uriOrigin);
-    final responseDestination = await Dio().getUri(uriDestination);
+      final responseDistance = await Dio().getUri(uriDistance);
+      final responseOrigin = await Dio().getUri(uriOrigin);
+      final responseDestination = await Dio().getUri(uriDestination);
 
-    final distance = DistanceOne.fromJson(responseDistance.data['data']);
-    final origin = AirportOne.fromJson(responseOrigin.data['data']);
-    final destination = AirportOne.fromJson(responseDestination.data['data']);
+      final distance = DistanceOne.fromJson(responseDistance.data['data']);
+      final origin = AirportDistance.fromJson(responseOrigin.data['data']);
+      final destination = AirportDistance.fromJson(responseDestination.data['data']);
 
-    final Map<String, dynamic> distanceAirports = {
-      'distance'   : distance.distance,
-      'origin'     : origin.items,
-      'destination': destination.items
-    };
-    
-    return distanceAirports;
+      final Map<String, dynamic> distanceAirports = {
+        'distance'   : distance.distance,
+        'origin'     : origin.airport,
+        'destination': destination.airport
+      };
+      
+      return distanceAirports;
+    }on DioError catch(e){
+      if(e.response.statusCode == 400){
+        return emptyMap;
+      }else{
+        return emptyMap;
+      }
+    }
   }
 }

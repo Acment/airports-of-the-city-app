@@ -25,20 +25,22 @@ class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsS
     yield DistanceFetchInProgress();
     Map<String, dynamic> distanceAirports;
     try{
-      if (distanceAirports == null){
+      if (event is DistanceInitSuccessEvent){
         yield DistanceAirportsInitial();
       }
-      if(event is DistanceSearchEvent){
+      else if(event is DistanceSearchEvent){
         distanceAirports = await distanceRepository.fetchDistance(inputOrigin: event.origin, inputDestination: event.destination);
       }
-      else if(distanceAirports.length == 0){
+      if (distanceAirports == null){
+        yield DistanceAirportsInitial();
+      }else if(distanceAirports.length == 0){
         yield DistanceFetchEmpty();
+      }else{
+        yield DistanceFetchSuccess(distanceAirports: distanceAirports);
       }
-      else{
-        DistanceFetchSuccess(distanceAirports: distanceAirports);
-      }
+      
     }catch(e){
-      yield AirportsFetchError();
+      yield DistanceFetchError();
     }
   }
 }

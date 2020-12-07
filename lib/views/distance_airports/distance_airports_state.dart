@@ -19,4 +19,4 @@ class DistanceFetchSuccess extends DistanceAirportsState {
 
 class DistanceFetchEmpty extends DistanceAirportsState {}
 
-class AirportsFetchError extends DistanceAirportsState {}
+class DistanceFetchError extends DistanceAirportsState {}
