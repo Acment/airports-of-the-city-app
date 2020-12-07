@@ -5,7 +5,8 @@ import 'package:aiports_of_the_city/views/distance_airports/distance_airports_bl
 
 class DistanceAirportsPage extends StatelessWidget {
 
-  final List<String> routeText = new List();
+  String origin;
+  String destination;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,14 @@ class DistanceAirportsPage extends StatelessWidget {
     
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 30.0),
+        margin: EdgeInsets.only(top: 37.0),
         child: Column(
           children: <Widget>[
             inputsFields(),
-            ElevatedButton(onPressed: (){}, child: Text('submmit'),),
+            ElevatedButton(
+              onPressed: () => _bloc.add(DistanceSearchEvent(origin: origin, destination: destination)), 
+              child: Text('submmit'),
+              ),
           ]
         ),
       ) 
@@ -38,10 +42,11 @@ class DistanceAirportsPage extends StatelessWidget {
         ),
         onChanged: (String inputText){
           if (inputText.length > 0){
-            routeText[0] = inputText.trim().toUpperCase();
+            destination = inputText.trim().toUpperCase();
           }
         },
         ),
+        Padding(padding: EdgeInsets.only(top: 20)),
         TextField(
         textCapitalization: TextCapitalization.words,
         decoration: InputDecoration(
@@ -52,7 +57,7 @@ class DistanceAirportsPage extends StatelessWidget {
         ),
         onChanged: (String inputText){
           if (inputText.length > 0){
-            routeText[1] = inputText.trim().toUpperCase();
+            origin = inputText.trim().toUpperCase();
           }
         },
         ),
