@@ -6,6 +6,13 @@ class DistanceAirportsRepository{
 
   GetAirports _getAirports = GetAirports();
 
-  Future<Map<String, dynamic>> fetchDistance({String inputOrigin, String inputDestination}) => _getAirports.fetchDistanceAirports(inputOrigin: inputOrigin, inputDestination: inputDestination );
+  Future<Map<String, dynamic>> fetchDistance({String inputOrigin, String codeOrigin, String inputDestination, String codeDestination }) {
+    return _getAirports.fetchDistanceAirports(
+      inputOrigin: inputOrigin, 
+      codeOrigin: codeOrigin ,
+      inputDestination: inputDestination, 
+      codeDestination: codeDestination
+      );
+  }
   
 }
