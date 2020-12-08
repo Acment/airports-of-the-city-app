@@ -70,9 +70,14 @@ class GetAirports {
     return airports.items; 
   }
 
-  Future<Map<String, dynamic>> fetchDistanceAirports({String inputOrigin, String inputDestination}) async{
+  Future<Map<String, dynamic>> fetchDistanceAirports({
+    String inputOrigin, 
+    String codeOrigin , 
+    String inputDestination,
+    String codeDestination,
+    }) async{
     try{
-      Uri uriDistance = Uri.https(_url, 'routes/$inputOrigin-$inputDestination');
+      Uri uriDistance = Uri.https(_url, 'routes/from/$codeOrigin/$inputOrigin/to/$codeDestination/$inputDestination');
       Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
       Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
 
