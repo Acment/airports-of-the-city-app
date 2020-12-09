@@ -13,11 +13,21 @@ class DistanceInitSuccessEvent extends DistanceAirportsEvent{
 
 class DistanceSearchEvent extends DistanceAirportsEvent {
   final String origin;
+  final String codeOrigin;
   final String destination;
+  final String codeDestination;
+  
 
 
   @override
-  List<Object> get props => [origin, destination];
+  List<Object> get props => [origin, codeOrigin ,destination, codeDestination];
 
-  DistanceSearchEvent({@required this.origin, @required this.destination});
+  DistanceSearchEvent({
+    @required this.origin, 
+    @required this.codeOrigin,
+    @required this.destination,
+    @required this.codeDestination
+    });
 }
+
+
