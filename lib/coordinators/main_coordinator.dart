@@ -1,5 +1,6 @@
 import 'package:aiports_of_the_city/repositories/distance_airports_repositories.dart';
 import 'package:aiports_of_the_city/repositories/search_airports_repositories.dart';
+import 'package:aiports_of_the_city/views/detail_airports/detail_airports_bloc.dart';
 import 'package:aiports_of_the_city/views/distance_airports/distance_airports_bloc.dart';
 import 'package:aiports_of_the_city/views/distance_airports/distance_airports_page.dart';
 import 'package:aiports_of_the_city/views/search_airports/search_airports_bloc.dart';
@@ -17,6 +18,12 @@ class MainCoordinator {
   void launchDistance(BuildContext context) {
     Navigator.of(context).push(
       _createRoute(_createDistancePage())
+    );
+  }
+
+  void launchDetail(BuildContext context, iata) {
+    Navigator.of(context).push(
+      _createRoute(_createDetailPage(iata))
     );
   }
 
@@ -42,6 +49,15 @@ class MainCoordinator {
       child: SearchAirportsPage(),
     );
 
+  }
+
+  BlocProvider<DetailAirportsBloc> _createDetailPage(iata){
+    return BlocProvider<DetailAirportsBloc>(create: (BuildContext context) => DetailAirportsBloc(
+      context: context, 
+      repository: AirportsSearchRepository(),
+      )..add(SearchDetailAirportsEvent(iata: iata))
+      child: DetailAirportsPage(),
+      );
   }
 
   MaterialPageRoute _createRoute(Widget page) {
