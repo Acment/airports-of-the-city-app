@@ -19,14 +19,15 @@ class SearchAirportsPage extends StatelessWidget {
           children: <Widget>[
             TextField(
                 //autofocus: true,
+                autofocus: true,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                   hintText: 'Write an airport',
                 ),
                 onChanged: (String inputText){
-                  if (inputText.length == 3){
-                    bloc.add(SearchByIataEvent(inputText: inputText.trimLeft().trimRight().toUpperCase()));
+                  if (inputText.length > 0){
+                    bloc.add(SearchByFilterEvent(inputText: inputText.trimLeft().trimRight()));
                   }
                 },
                 ),

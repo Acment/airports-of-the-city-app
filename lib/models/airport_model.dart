@@ -24,6 +24,15 @@ class AirportOne {
   }
 }
 
+class AirportDistance{
+  Airport airport;
+
+  AirportDistance.fromJson(Map item){
+    final items = new Airport.fromJsonMap(item);
+    airport = items;
+  }
+}
+
 class Airport {
   String iata;
   String name;

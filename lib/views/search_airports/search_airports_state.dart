@@ -19,7 +19,7 @@ class SearchAirportsFetchSuccess extends SearchAirportsState{
 // class SearchAirportsIATA extends SearchAirportsState{}
 // class SearchAirportsGeneral extends SearchAirportsState{}
 // class SearchAirportsICAO extends SearchAirportsState{}
-
+// TODO change states names 
 class SearchAirportsEmpty extends SearchAirportsState{}
 
 class SearchAirportsError extends SearchAirportsState {}

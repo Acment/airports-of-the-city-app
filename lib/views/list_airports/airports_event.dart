@@ -13,6 +13,8 @@ part of 'airports_bloc.dart';
 enum AirportsEvent {
 
   loadSuccess,
+  searchPageSelected,
+  distancePageSelected
 }
 
 // class OneAirportEvent {

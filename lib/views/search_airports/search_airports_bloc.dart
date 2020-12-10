@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:aiports_of_the_city/coordinators/main_coordinator.dart';
 import 'package:aiports_of_the_city/models/airport_model.dart';
 import 'package:aiports_of_the_city/repositories/search_airports_repositories.dart';
+import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,9 +13,15 @@ part 'search_airports_state.dart';
 
 class SearchAirportsBloc extends Bloc<SearchAirportsEvent, SearchAirportsState> {
 final AirportsSearchRepository airportsSearchRepository;
+final MainCoordinator coordinator;
+final BuildContext context;
 
-  SearchAirportsBloc({this.airportsSearchRepository}) : super(SearchAirportsInitial());
-
+  SearchAirportsBloc({
+    @required this.airportsSearchRepository,  
+    @required this.context,
+    this.coordinator,
+    }) : super(SearchAirportsInitial());
+// TODO delete unnecesary code
   @override
   SearchAirportsState get initialState => SearchAirportsInitial();
 
@@ -24,15 +32,18 @@ final AirportsSearchRepository airportsSearchRepository;
     yield SearchAirportsInFetch();
     List<Airport> airports;
     try {
-      if (event is SearchInitSuccessEvent ) {
-        yield SearchAirportsInitial();
-      }else if(event is SearchByIataEvent){
+      // if (event is SearchInitSuccessEvent ) {
+      //   yield SearchAirportsInitial();
+      // }
+      if(event is SearchByIataEvent){
         print(event.inputText);
         airports = await airportsSearchRepository.fetchByIATA(event.inputText);
       }else if( event is SearchByFilterEvent){
         airports = await airportsSearchRepository.fetchByFilter(event.inputText);
       }
-      if (airports.length == 0) {
+      if (airports == null) {
+        yield SearchAirportsInitial();
+      }else if( airports.length == 0){
         yield SearchAirportsEmpty();
       }
       
@@ -45,6 +56,7 @@ final AirportsSearchRepository airportsSearchRepository;
         yield SearchAirportsFetchSuccess(airports: airports);
       }
     } catch (_) {
+      print(_);
       yield SearchAirportsError();
     }
   }
