@@ -1,6 +1,7 @@
 import 'package:aiports_of_the_city/repositories/distance_airports_repositories.dart';
 import 'package:aiports_of_the_city/repositories/search_airports_repositories.dart';
 import 'package:aiports_of_the_city/views/detail_airports/detail_airports_bloc.dart';
+import 'package:aiports_of_the_city/views/detail_airports/detail_airports_page.dart';
 import 'package:aiports_of_the_city/views/distance_airports/distance_airports_bloc.dart';
 import 'package:aiports_of_the_city/views/distance_airports/distance_airports_page.dart';
 import 'package:aiports_of_the_city/views/search_airports/search_airports_bloc.dart';
@@ -55,7 +56,7 @@ class MainCoordinator {
     return BlocProvider<DetailAirportsBloc>(create: (BuildContext context) => DetailAirportsBloc(
       context: context, 
       repository: AirportsSearchRepository(),
-      )..add(SearchDetailAirportsEvent(iata: iata))
+      )..add(SearchDetailAirportsEvent(iata: iata)),
       child: DetailAirportsPage(),
       );
   }
