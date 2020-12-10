@@ -10,8 +10,8 @@ abstract class DetailAirportsState extends Equatable {
 class DetailAirportsFetchInProgress extends DetailAirportsState {}
 
 class DetailAirportsFetchSuccess extends DetailAirportsState {
-  final String iata;
-  DetailAirportsFetchSuccess({@required this.iata});
+  final List<Airport> airportDetail;
+  DetailAirportsFetchSuccess({@required this.airportDetail});
 }
 
 class AirportsFetchError extends AirportsState {}
