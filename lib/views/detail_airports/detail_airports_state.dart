@@ -14,4 +14,4 @@ class DetailAirportsFetchSuccess extends DetailAirportsState {
   DetailAirportsFetchSuccess({@required this.airportDetail});
 }
 
-class AirportsFetchError extends AirportsState {}
+class DetailAirportsFetchError extends DetailAirportsState {}
