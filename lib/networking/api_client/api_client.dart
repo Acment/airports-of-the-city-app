@@ -78,8 +78,8 @@ class GetAirports {
     }) async{
     try{
       Uri uriDistance = Uri.https(_url, 'routes/from/$codeOrigin/$inputOrigin/to/$codeDestination/$inputDestination');
-      Uri uriOrigin = Uri.https(_url, 'airports/iata/$inputOrigin');
-      Uri uriDestination = Uri.https(_url, 'airports/iata/$inputDestination');
+      Uri uriOrigin = Uri.https(_url, 'airports/$codeOrigin/$inputOrigin');
+      Uri uriDestination = Uri.https(_url, 'airports/$codeDestination/$inputDestination');
 
       final responseDistance = await Dio().getUri(uriDistance);
       final responseOrigin = await Dio().getUri(uriOrigin);
