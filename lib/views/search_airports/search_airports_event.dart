@@ -33,3 +33,12 @@ class SearchByIataEvent extends SearchAirportsEvent {
 
   SearchByIataEvent({@required this.inputText}) : assert(inputText != null);
 }
+
+class DetailPageSelectedEvent extends SearchAirportsEvent {
+  final String iata;
+
+  @override
+  List<Object> get props => [iata];
+
+  DetailPageSelectedEvent({@required this.iata});
+}

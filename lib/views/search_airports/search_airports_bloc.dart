@@ -7,6 +7,7 @@ import 'package:aiports_of_the_city/views/list_airports/airports_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 
 part 'search_airports_event.dart';
 part 'search_airports_state.dart';
@@ -40,6 +41,8 @@ final BuildContext context;
         airports = await airportsSearchRepository.fetchByIATA(event.inputText);
       }else if( event is SearchByFilterEvent){
         airports = await airportsSearchRepository.fetchByFilter(event.inputText);
+      }else if(event is DetailPageSelectedEvent){
+        coordinator.launchDetail(context, event.iata);
       }
       if (airports == null) {
         yield SearchAirportsInitial();
