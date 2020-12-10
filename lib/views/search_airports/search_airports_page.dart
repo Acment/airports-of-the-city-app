@@ -44,7 +44,7 @@ class SearchAirportsPage extends StatelessWidget {
                     ),
                   );
                 } else if(state is SearchAirportsFetchSuccess) {
-                  return buildAirports(state.airports);
+                  return buildAirports(state.airports, bloc);
                 
                 }else if(state is SearchAirportsError) {
                   return Center(child: Text('Error Ocurred'),);
@@ -68,7 +68,7 @@ class SearchAirportsPage extends StatelessWidget {
   
 }
 
-  Widget buildAirports(List<Airport> airports) {
+  Widget buildAirports(List<Airport> airports, bloc) {
     return ListView.builder(
       itemCount: airports.length ,
       scrollDirection: Axis.vertical,
@@ -79,6 +79,7 @@ class SearchAirportsPage extends StatelessWidget {
           leading: Text("${airports[index].iata}", style: TextStyle(height: 2.3),),
           title: Text("${airports[index].name}"),
           subtitle: Text('${airports[index].country}'),
+          onTap: () => bloc.add(DetailPageSelectedEvent(iata: airports[index].iata)),
           ),
       );
     });
