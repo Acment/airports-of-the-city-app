@@ -28,7 +28,12 @@ class DetailAirportsBloc extends Bloc<DetailAirportsEvent, DetailAirportsState> 
     try{
       if (event is SearchDetailAirportsEvent){
         detailAirport = await repository.fetchByIATA(event.iata);
-      }else{
+
+      }
+      if(detailAirport == null){
+        yield DetailAirportsFetchInProgress();
+      }
+      else{
         yield DetailAirportsFetchSuccess(airportDetail: detailAirport);
       }
     }catch(_){
