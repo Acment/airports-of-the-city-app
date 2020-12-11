@@ -29,7 +29,10 @@ class DistanceAirportsBloc extends Bloc<DistanceAirportsEvent, DistanceAirportsS
         yield DistanceAirportsInitial();
       }
       else if(event is DistanceSearchEvent){
-        distanceAirports = await distanceRepository.fetchDistance(inputOrigin: event.origin, codeOrigin:event.codeOrigin, inputDestination: event.destination, codeDestination: event.codeDestination);
+        distanceAirports = await distanceRepository.fetchDistance(inputOrigin: event.origin, codeOrigin:event.codeOrigin, 
+        inputDestination: event.destination, codeDestination: event.codeDestination);
+      }else if(event is DistanceDetailPageSelectedEvent ){
+        coordinator.launchDetail(context, event.iata);
       }
       if (distanceAirports == null){
         yield DistanceAirportsInitial();

@@ -30,4 +30,15 @@ class DistanceSearchEvent extends DistanceAirportsEvent {
     });
 }
 
+class DistanceDetailPageSelectedEvent extends DistanceAirportsEvent {
+  final String iata;
+
+  @override
+  List<Object> get props => [iata];
+
+  DistanceDetailPageSelectedEvent({
+    @required this.iata,
+  });
+}
+
 
