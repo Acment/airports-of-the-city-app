@@ -8,4 +8,8 @@ class AirportsSearchRepository {
 
   Future<List<Airport>> fetchByIATA(String iata) =>
       _getAirports.fetchByIATA(iata);
+  
+  Future<List<Airport>> fetchByICAO(String icao) =>
+      _getAirports.fetchByICAO(icao);
+  
 }
