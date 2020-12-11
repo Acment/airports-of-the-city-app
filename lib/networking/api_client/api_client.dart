@@ -43,14 +43,21 @@ class GetAirports {
   }
 
   Future<List<Airport>> fetchByICAO(String icao) async {
-    Uri uri = Uri.https(_url, 'airports/iata/PTY');
+    try{
+              Uri uri = Uri.https(_url, 'airports/iata/$icao');
+        final response = await Dio().getUri(uri);
 
-    final response = await Dio().getUri(uri);
-    print('response: ${response.data['data']}');
-
-    final airports = new AirportOne.fromJson(response.data['data']);
-  
-    return airports.items;
+        final airports = new AirportOne.fromJson(response.data['data']);
+        print(airports.items);
+        return airports.items;
+        }on DioError catch (e) {
+          if(e.response.statusCode == 404){
+            return empty;
+          }else{
+            print(e.message);
+            return empty;
+          }
+        }
   }
 
   Future<List<Airport>> fetchByFilter(String inputText) async {
