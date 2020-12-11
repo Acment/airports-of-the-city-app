@@ -50,7 +50,7 @@ class _DistanceAirportsPageState extends State<DistanceAirportsPage> {
                     child: CircularProgressIndicator()
                     ,);
                 }else if(state is DistanceFetchSuccess){
-                  return displayDistance(state.distanceAirports);
+                  return displayDistance(state.distanceAirports, _bloc);
                 }else if(state is DistanceFetchError){
                   return Center(child: Text('Error Ocurred'),);
                 }else if(state is DistanceFetchEmpty){
@@ -143,7 +143,7 @@ class _DistanceAirportsPageState extends State<DistanceAirportsPage> {
       ],);
     }
 
-  Widget displayDistance(Map<String, dynamic> airportsDistance){
+  Widget displayDistance(Map<String, dynamic> airportsDistance, bloc){
     Distance distance = airportsDistance['distance'];
     Airport origin = airportsDistance['origin'];
     Airport destination = airportsDistance['destination'];
@@ -161,6 +161,7 @@ class _DistanceAirportsPageState extends State<DistanceAirportsPage> {
           leading: Text("Origin", style: TextStyle(height: 2.3),),
           title: Text("${origin.name}"),
           subtitle: Text('${origin.country}'),
+          onTap: () => bloc.add(DistanceDetailPageSelectedEvent(iata: origin.iata)),
           ),
       ),
         Card(
@@ -168,6 +169,7 @@ class _DistanceAirportsPageState extends State<DistanceAirportsPage> {
           leading: Text("Destination", style: TextStyle(height: 2.3),),
           title: Text("${destination.name}"),
           subtitle: Text('${destination.country}'),
+          onTap: () => bloc.add(DistanceDetailPageSelectedEvent(iata: destination.iata)) ,
           ),
       ),
 
